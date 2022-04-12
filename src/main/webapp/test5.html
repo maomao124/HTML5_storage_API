@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：HTML5_storage_API
+  File name(文件名): test5
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/4/12
+  Time(创建时间)： 18:35
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form {
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<form>
+    <fieldset>
+        <legend>添加测试数据</legend>
+        <label for="testData"></label>
+        <input id="testData" type="text"/>
+        <input type="button" value="添加" onclick="addData()">
+    </fieldset>
+</form>
+<p>数据如下：</p>
+<table id="allData" border="1">
+
+</table>
+<script>
+    var allData = document.getElementById("allData");
+    refreshData();
+
+    function refreshData()
+    {
+        var length = sessionStorage.length;
+        if (length === 0)
+        {
+            allData.innerHTML = "目前暂无数据";
+        }
+        else
+        {
+            allData.innerHTML = "<tr><th>键名称</th><th>键值</th><th>操作</th></tr>";
+            for (var i = 0; i < length; i++)
+            {
+                var tr = document.createElement("tr");
+                var name = sessionStorage.key(i);
+                tr.innerHTML = '<td>' + name + '</td><td>'
+                    + sessionStorage.getItem(name)
+                    + '</td><td><button onclick="delData(' + i + ')">删除</button></td>';
+                allData.appendChild(tr);
+            }
+        }
+    }
+
+    function addData()
+    {
+        var length = sessionStorage.length;
+        var n = length + 1;
+        var test = document.getElementById("testData");
+        var value = test.value;
+        sessionStorage.setItem(n, value);
+        test.value = "";
+        refreshData();
+    }
+
+    function delData(n)
+    {
+        var name = sessionStorage.key(n);
+        sessionStorage.removeItem(name);
+        refreshData();
+    }
+</script>
+</body>
+</html>
