@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：HTML5_storage_API
+  File name(文件名): test4
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/4/12
+  Time(创建时间)： 18:26
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        textarea {
+            width: 600px;
+            height: 300px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<label for="comment">留言板<br></label><textarea id="comment"></textarea>
+<br/>
+<button onclick="saveComment()">
+    提交留言
+</button>
+
+<ol id="all">
+
+</ol>
+
+<script>
+    var allComments = document.getElementById("all");
+
+    getAll();
+
+    function getAll()
+    {
+        //获取历史留言个数
+        var num = localStorage.length;
+
+        if (num === 0)
+        {
+            allComments.innerHTML = "暂无留言。";
+        }
+        else
+        {
+            allComments.innerHTML = "";
+            for (var i = 0; i < num; i++)
+            {
+                var x = document.createElement("li");
+                var name = localStorage.key(i);
+                x.innerHTML = name + "-->" + localStorage.getItem(name);
+                allComments.appendChild(x);
+            }
+        }
+    }
+
+    function saveComment()
+    {
+        var comment = document.getElementById("comment");
+        var now = new Date();
+        var key = now.getTime();
+        localStorage.setItem(key, comment.value);
+        comment.value = "";
+        getAll();
+    }
+</script>
+</body>
+</html>
