@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：HTML5_storage_API
+  File name(文件名): test1
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/4/12
+  Time(创建时间)： 18:08
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="load()">
+<div id="support1"></div>
+<div id="support2"></div>
+<script>
+    function checkSupport()
+    {
+        if (window.localStorage)
+        {
+            document.getElementById("support1").innerHTML = "浏览器支持localStorage存储";
+        }
+        else
+        {
+            document.getElementById("support1").innerHTML = "浏览器不支持localStorage存储";
+        }
+
+        if (window.sessionStorage)
+        {
+            document.getElementById("support2").innerHTML = "浏览器支持sessionStorage存储";
+        }
+        else
+        {
+            document.getElementById("support2").innerHTML = "浏览器不支持sessionStorage存储";
+        }
+    }
+
+    function load()
+    {
+        checkSupport();
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：HTML5_storage_API
+  File name(文件名): test3
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/4/12
+  Time(创建时间)： 18:15
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+localStorage存储：您曾经访问了当前页面<span id="time1">0</span>次。
+<br/>
+sessionStorage存储：您曾经访问了当前页面<span id="time2">0</span>次。
+</body>
+
+<script>
+    var count1 = localStorage.getItem("count1");
+    var count2 = sessionStorage.getItem("count2");
+
+    console.log(count1)
+    console.log(count2)
+
+    if (count1 == null)
+    {
+        count1 = 0;
+    }
+    if (count2 == null)
+    {
+        count2 = 0;
+    }
+
+    console.log(count1)
+    console.log(count2)
+
+    document.getElementById("time1").innerHTML = count1;
+    document.getElementById("time2").innerHTML = count2;
+
+    count1 = parseInt(count1) + 1
+    count2 = parseInt(count2) + 1
+
+    localStorage.setItem("count1", count1)
+    sessionStorage.setItem("count2", count2)
+
+</script>
+</html>
